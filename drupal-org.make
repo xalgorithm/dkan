@@ -12,7 +12,6 @@ projects[dkan_dataset][download][type] = git
 projects[dkan_dataset][download][url] = https://github.com/NuCivic/dkan_dataset.git
 projects[dkan_dataset][download][tag] = 7.x-1.11-RC2
 
-
 projects[dkan_datastore][subdir] = dkan
 projects[dkan_datastore][download][type] = git
 projects[dkan_datastore][download][url] = https://github.com/NuCivic/dkan_datastore.git
@@ -165,6 +164,7 @@ projects[omega][type] = theme
 projects[nuboot_radix][download][type] = git
 projects[nuboot_radix][download][url] = https://github.com/NuCivic/nuboot_radix.git
 projects[nuboot_radix][download][tag] = 7.x-1.11-RC2
+projects[nuboot_radix][download][tag] = 7.x-1.10
 projects[nuboot_radix][type] = theme
 
 projects[radix][type] = theme
