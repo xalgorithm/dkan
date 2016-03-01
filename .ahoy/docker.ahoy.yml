@@ -61,3 +61,8 @@ commands:
   compose:
     cmd: docker-compose -f dkan/.ahoy/docker-compose.yml -p "${PWD##*/}" {{args}}
     usage: Abstraction for docker-compose
+  import-key:
+    cmd: |
+      cat ~/.ssh/id_rsa | docker exec -i $(ahoy docker compose ps -q cli) bash -c 'cat >> ~/.ssh/id_rsa' &&
+      echo "Success: Your key has been added to the cli container."
+    usage: Copy your ssh key into the cli container
