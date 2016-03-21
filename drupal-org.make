@@ -14,7 +14,7 @@ includes:
     #DKAN Data Story
   - "modules/dkan/dkan_data_story/dkan_data_story.make"
     # React Dashboard
-  - "https://raw.githubusercontent.com/NuCivic/react_dashboard/master/react_dashboard.make
+  - "https://raw.githubusercontent.com/NuCivic/react_dashboard/master/react_dashboard.make"
 projects:
   manualcrop:
     version: 1.x-dev
