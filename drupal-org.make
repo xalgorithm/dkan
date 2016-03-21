@@ -13,6 +13,8 @@ includes:
   - "https://raw.githubusercontent.com/NuCivic/visualization_entity_charts/master/visualization_entity_charts.make"
     #DKAN Data Story
   - "modules/dkan/dkan_data_story/dkan_data_story.make"
+    # React Dashboard
+  - "https://raw.githubusercontent.com/NuCivic/react_dashboard/master/react_dashboard.make
 projects:
   manualcrop:
     version: 1.x-dev
@@ -61,6 +63,12 @@ projects:
       type: git
       url: 'https://github.com/NuCivic/dkan_workflow.git'
       branch: 7.x-1.x
+  react_dashboard:
+    subdir: contrib
+    download:
+      type: git
+      url: 'https://github.com/NuCivic/react_dashboard.git'
+      branch: master
   visualization_entity:
     download:
       type: git
