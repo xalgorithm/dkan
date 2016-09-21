@@ -99,6 +99,7 @@ default:
         search content results: '.content'
         user content: '.view-user-profile-search'
         content search: '.form-item-query'
+        dkan_workflow_tree: '.views-dkan-workflow-tree'
         user block: '.pane-views-user-profile-fields-block'
         admin menu: '#admin-menu'
       text:

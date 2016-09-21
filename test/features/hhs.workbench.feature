@@ -2,11 +2,12 @@
 Feature:
   HHS specific workbench tests.
 
-  @api 
+  @api  @javascript
   Scenario Outline: As <user>, I <visibility> be able to access My workbench
     Given Users:
       | name       | mail                     | status | roles                             |
       | AUTH       | AUTH@fakeemail.com       | 1      | Authenticated User                |
+      ## HHS workflow contributor has access
       | AUTH-WC    | AUTH-WC@fakeemail.com    | 1      | Workflow Contributor              |
       | ED         | ED@fakeemail.com         | 1      | Editor                            |
       | ED-WM      | ED-WM@fakeemail.com      | 1      | Editor, Workflow Moderator        |
@@ -332,15 +333,15 @@ Feature:
       | Dataset 01                        | Oracle    | draft         | Bludhaven   | Jul 21, 2015      | Jul 21, 2015 |
       | Dataset 02                        | Superboy  | needs_review  | Smallville  | Jul 21, 2015      | Jul 21, 2015 |
       | Dataset 03                        | Superman  | draft         |             | Jul 21, 2015      | Jul 21, 2015 |
-    And feedback:
-      | title                             | author    | moderation    | associated content |
-      | Bludhaven Feedback Draft          | Robin     | draft         | Dataset 01         |
-      | Bludhaven Feedback Needs Review   | Robin     | needs_review  | Dataset 01         |
-      | Smallville Feedback Draft         | Superboy  | draft         | Dataset 02         |
-      | Smallville Feedback Needs Review  | Superboy  | needs_review  | Dataset 02         |
-      | Groupless Feedback Draft          | Robin     | draft         | Dataset 03         |
-      | Groupless Feedback Needs Review 1 | Spoiler   | needs_review  | Dataset 03         |
-      | Groupless Feedback Needs Review 2 | Robin     | needs_review  | Dataset 03         |
+    #And feedback:
+      #| title                             | author    | moderation    | associated content |
+      #| Bludhaven Feedback Draft          | Robin     | draft         | Dataset 01         |
+      #| Bludhaven Feedback Needs Review   | Robin     | needs_review  | Dataset 01         |
+      #| Smallville Feedback Draft         | Superboy  | draft         | Dataset 02         |
+      #| Smallville Feedback Needs Review  | Superboy  | needs_review  | Dataset 02         |
+      #| Groupless Feedback Draft          | Robin     | draft         | Dataset 03         |
+      #| Groupless Feedback Needs Review 1 | Spoiler   | needs_review  | Dataset 03         |
+      #| Groupless Feedback Needs Review 2 | Robin     | needs_review  | Dataset 03         |
     And pages:
       | name             | url                                  |
       | My drafts        | /admin/workbench/drafts-active       |
@@ -353,41 +354,41 @@ Feature:
 
     Examples:
       | moderator | workbench tab | link              | content title                     | user      | visibility  |
-      | Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Nightwing | should      |
-      | Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Batgirl   | should      |
-      | Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Oracle    | should not  |
-      | Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Robin     | should      |
-      | Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Ma Kent   | should not  |
-      | Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Robin     | should      |
-      | Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Nightwing | should not  |
-      | Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Oracle    | should not  |
-      | Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Superboy  | should not  |
-      | Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Ma Kent   | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Spoiler   | should      |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Superboy  | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Oracle    | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Ma Kent   | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Nightwing | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Batgirl   | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 2 | Spoiler   | should not  |
-      | Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 2 | Oracle    | should not  |
-      | Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Oracle    | should      |
-      | Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Robin     | should      |
-      | Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Ma Kent   | should not  |
-      | Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Nightwing | should not  |
-      | Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Batgirl   | should not  |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Ma Kent   | should      |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Pa Kent   | should not  |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Superboy  | should      |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Robin     | should not  |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Nightwing | should not  |
-      | Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Oracle    | should not  |
-      | Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Superboy  | should      |
-      | Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Ma Kent   | should not  |
-      | Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Oracle    | should not  |
-      | Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Superboy  | should      |
-      | Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Ma Kent   | should not  |
-      | Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Oracle    | should not  |
+      #| Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Nightwing | should      |
+      #| Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Batgirl   | should      |
+      #| Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Oracle    | should not  |
+      #| Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Robin     | should      |
+      #| Robin     | My drafts     | Submit for Review | Bludhaven Feedback Draft          | Ma Kent   | should not  |
+      #| Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Robin     | should      |
+      #| Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Nightwing | should not  |
+      #| Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Oracle    | should not  |
+      #| Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Superboy  | should not  |
+      #| Nightwing | Needs review  | Publish           | Bludhaven Feedback Needs Review   | Ma Kent   | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Spoiler   | should      |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Superboy  | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Oracle    | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Ma Kent   | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Nightwing | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 1 | Batgirl   | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 2 | Spoiler   | should not  |
+      #| Oracle    | Needs review  | Reject            | Groupless Feedback Needs Review 2 | Oracle    | should not  |
+      #| Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Oracle    | should      |
+      #| Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Robin     | should      |
+      #| Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Ma Kent   | should not  |
+      #| Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Nightwing | should not  |
+      #| Robin     | My drafts     | Submit for Review | Groupless Feedback Draft          | Batgirl   | should not  |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Ma Kent   | should      |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Pa Kent   | should not  |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Superboy  | should      |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Robin     | should not  |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Nightwing | should not  |
+      #| Superboy  | My drafts     | Submit for Review | Smallville Feedback Draft         | Oracle    | should not  |
+      #| Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Superboy  | should      |
+      #| Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Ma Kent   | should not  |
+      #| Ma Kent   | Needs review  | Reject            | Smallville Feedback Needs Review  | Oracle    | should not  |
+      #| Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Superboy  | should      |
+      #| Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Ma Kent   | should not  |
+      #| Ma Kent   | Needs review  | Publish           | Smallville Feedback Needs Review  | Oracle    | should not  |
       | Ma Kent   | Needs review  | Reject            | Smallville Dataset Needs Review   | Pa Kent   | should      |
       | Ma Kent   | Needs review  | Reject            | Smallville Dataset Needs Review   | Ma Kent   | should not  |
       | Ma Kent   | Needs review  | Publish           | Smallville Dataset Needs Review   | Pa Kent   | should      |
