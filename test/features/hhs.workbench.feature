@@ -1,7 +1,8 @@
-@api @javascript  @enableDKAN_Workflow
+@enableDKAN_Workflow
 Feature:
   HHS specific workbench tests.
 
+  @api 
   Scenario Outline: As <user>, I <visibility> be able to access My workbench
     Given Users:
       | name       | mail                     | status | roles                             |
@@ -23,6 +24,7 @@ Feature:
       | SM         | should not |
       | SM-WS      | should     |
 
+  @api 
   Scenario Outline: As a <role>, in Workbench, I <visibility> be able to access <tab>
     Given pages:
       | name | url             |
@@ -46,6 +48,7 @@ Feature:
       | Workflow Moderator   | Stale reviews | should not |
       | Workflow Supervisor  | Stale reviews | should     |
 
+  @api 
   Scenario Outline: As <user>, I should be able to upgrade all draft content to needs review
     Given Users:
       | name    | mail                  | status | roles                |
@@ -65,6 +68,7 @@ Feature:
       | AUTH-WM |
       | AUTH-WS |
 
+  @api 
   Scenario Outline: As <user>, I should not be able to upgrade draft content to needs review
     Given Users:
       | name    | mail                  | status | roles                |
@@ -83,6 +87,7 @@ Feature:
       | ED   |
       | SM   |
 
+  @api 
   Scenario Outline: As <user>, I <visibility> be able to see content in <page> of My Workbench
     Given groups:
       | title |
@@ -180,6 +185,7 @@ Feature:
       | SM                 | Stale reviews | should     | Bludhaven Needs Review Dataset               |
       | SM                 | Stale reviews | should     | Smallville Needs Review Dataset              |
 
+  @api 
   Scenario Outline: As a role, I should be able to upgrade all content to published
     Given groups:
       | title      |
@@ -233,6 +239,7 @@ Feature:
       | AUTH-WM | Needs review | 1     |
       | AUTH-WS | Needs review | 6     |
 
+  @api 
   Scenario Outline: As a role, I should not be able to upgrade all content to published
     Given groups:
       | title      |
@@ -291,7 +298,7 @@ Feature:
       | ED      | Needs review |
       | SM      | Needs review |
 
-  @mail
+  @api  @mail
   Scenario Outline: As a user, I should/should not receive an email on content moderation state change
     Given groups:
       | title       |
