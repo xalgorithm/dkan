@@ -8,7 +8,7 @@ Feature:
       | name       | mail                     | status | roles                             |
       | AUTH       | AUTH@fakeemail.com       | 1      | Authenticated User                |
       ## HHS workflow contributor has access
-      | AUTH-WC    | AUTH-WC@fakeemail.com    | 1      | Workflow Contributor              |
+      | AUTH-WC    | AUTH-WC@fakeemail.com    | 1      | Workflow Contributor, content creator |
       | ED         | ED@fakeemail.com         | 1      | Editor                            |
       | ED-WM      | ED-WM@fakeemail.com      | 1      | Editor, Workflow Moderator        |
       | SM         | SM@fakeemail.com         | 1      | Site Manager                      |
